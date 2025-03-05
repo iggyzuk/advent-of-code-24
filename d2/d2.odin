@@ -12,20 +12,21 @@ import "core:strings"
 import "core:testing"
 import "core:time"
 
-// In this attempt we process data in place; without deserializing it.
-// Makes it a little harder to reason about the logic from top to down.
-// We only have the previous and current state.
-
 main :: proc() {
 	bytes := #load("d2.txt")
 	str := string(bytes)
-	// fmt.println(p1(str))
+	fmt.println(p1(str))
 	fmt.println(p2(str))
 }
 
-// The levels are either all increasing or all decreasing.
-// Any two adjacent levels differ by at least one and at most three.
 p1 :: proc(data: string) -> int {
+
+	// The levels are either all increasing or all decreasing.
+	// Any two adjacent levels differ by at least one and at most three.
+
+	// In this attempt we process data in place; without deserializing it.
+	// Makes it a little harder to reason about the logic from top to down.
+	// We only have the previous and current state.
 
 	Direction :: enum {
 		None,
@@ -105,8 +106,9 @@ p1 :: proc(data: string) -> int {
 	return count // 486
 }
 
-// Can tolerate a single bad level.
 p2 :: proc(data: string) -> int {
+
+	// Can tolerate a single bad level.
 
 	count: int
 
